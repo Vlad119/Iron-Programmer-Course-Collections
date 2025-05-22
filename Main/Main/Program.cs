@@ -5,30 +5,26 @@ class Program
 {
     static void Main()
     {
-        // Считываем количество дисциплин
-        int n = int.Parse(Console.ReadLine());
-        HashSet<string> allStudents = null; // Множество для хранения общих учеников
+        int n = int.Parse(Console.ReadLine());//количество дисциплин
+        HashSet<string> allStudents = null;//все студенты
         for (int i = 0; i < n; i++)
         {
-            // Считываем количество фамилий в текущей дисциплине
-            int m = int.Parse(Console.ReadLine());
-            HashSet<string> currentStudents = new HashSet<string>();
+            int m = int.Parse(Console.ReadLine());//количество фамилий в дисциплине
+            HashSet<string> currentStudents = new HashSet<string>();//студенты по данной дисциплине
             for (int j = 0; j < m; j++)
             {
-                currentStudents.Add(Console.ReadLine()); // Добавляем фамилии в текущее множество
+                currentStudents.Add(Console.ReadLine());
             }
-            // Если это первая дисциплина, инициализируем allStudents
+            //Если первая дисциплина
             if (i == 0)
             {
-                allStudents = new HashSet<string>(currentStudents);
+                allStudents = currentStudents;
             }
-            else
+            else // Пересекаем множество со всеми студентами
             {
-                // Пересекаем текущее множество с allStudents
                 allStudents.IntersectWith(currentStudents);
             }
         }
-        // Выводим результат
         Console.WriteLine(allStudents.Count);
     }
 }
