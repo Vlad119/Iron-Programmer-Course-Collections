@@ -25,7 +25,6 @@ class Program
         for (int i = 0; i < n; i++)
         {
             Console.WriteLine(cities[split2[i]]);
-
         }
     }
 }
