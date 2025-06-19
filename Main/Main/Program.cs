@@ -1,44 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 
-class Program
+public class MainClass
 {
-    static void Main()
+    public static void Main()
     {
-        string s = Console.ReadLine();
-        int n = int.Parse(Console.ReadLine());
-        Dictionary<char, int> letterFrequency = new Dictionary<char, int>();
-        for (int i = 0; i < n; i++)
+        var word = Console.ReadLine();
+        var dict1 = new Dictionary<char, int>();
+        for (int i = 0; i < word.Length; i++)
         {
-            string[] split = Console.ReadLine().Split(new string[] { ": " }, StringSplitOptions.None);
-            char c = char.Parse(split[0]);
-            int count = int.Parse(split[1]);
-            letterFrequency.Add(c, count);
-        }
-        Dictionary<char, int> symbolFrequency = new Dictionary<char, int>();
-        foreach (char c in s)
-        {
-            if (symbolFrequency.ContainsKey(c))
+            if (dict1.ContainsKey(word[i]))
             {
-                symbolFrequency[c]++;
+                dict1[word[i]]++;
             }
             else
             {
-                symbolFrequency[c] = 1;
+                dict1.Add(word[i], 1);
             }
         }
-        List<KeyValuePair<char, int>> symbolsList = new List<KeyValuePair<char, int>>(symbolFrequency);
-        List<KeyValuePair<char, int>> lettersList = new List<KeyValuePair<char, int>>(letterFrequency);
-        Dictionary<char, char> mapping = new Dictionary<char, char>();
-        for (int i = 0; i < symbolsList.Count; i++)
+        int n = Convert.ToInt32(Console.ReadLine());
+        var dict2 = new Dictionary<int, char>();
+        for (int i = 0; i < n; i++)
         {
-            mapping[symbolsList[i].Key] = lettersList[i].Key;
+            var str = Console.ReadLine().Split(new string[] { ": " }, StringSplitOptions.None);
+            dict2[Convert.ToInt32(str[1])] = Convert.ToChar(str[0]);
         }
-        char[] decrypted = new char[s.Length];
-        for (int i = 0; i < s.Length; i++)
+        foreach (var c in word)
         {
-            decrypted[i] = mapping[s[i]];
+            Console.Write(dict2[dict1[c]]);
         }
-        Console.WriteLine(new string(decrypted));
     }
 }
